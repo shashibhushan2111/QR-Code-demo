@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post" enctype="multipart/form-data"> 
+    
+    <input type="text" name="inputText" />
+    <input type="submit" value="Generate"/>
+    <input type="button" value="Print" onclick="ABC()"/>
+</form>
+
+
+<hr />
+@if(@ViewBag.QRCode != null)
+{
+    <div id="asldklh">
+        <img id="QR" src="@ViewBag.QrCode" height="200px" width="200px"/>
+    </div>
+}
