@@ -24,7 +24,7 @@ steps:
     command: restore
     restoreSolution: '$(solution)'
     feedsToUse: select
-- task: DotNetCoreCLI@2
+- task: DotNetCoreCLI@1
   displayName: Build
   inputs:
     command: build
