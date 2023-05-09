@@ -10,9 +10,11 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  batchFilePath: '$(Build.SourcesDirectory)\scripts\file.bat'
+  batchFilePath: '$(Build.SourcesDirectory)'
 
 steps:
 - task: BatchScript@1
   inputs:
     filename: '$(batchFilePath)'
+- script: |
+    echo '$(batchFilePath)' 
