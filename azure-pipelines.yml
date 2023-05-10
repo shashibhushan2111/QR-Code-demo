@@ -13,5 +13,4 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      cd /d D:\AzureTest
       dir
