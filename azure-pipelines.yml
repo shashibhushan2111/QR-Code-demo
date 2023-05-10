@@ -12,4 +12,5 @@ pool:
 steps:
 - task: CmdLine@2
   inputs:
-    script: 'echo $(System.workingDirectory)'
+    script: 'D:\AzureTest\test.bat'
+    workingDirectory: $(System.DefaultWorkingDirectory)
