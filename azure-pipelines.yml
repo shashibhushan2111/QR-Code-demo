@@ -9,12 +9,7 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
-variables:
-  batchFilePath: '$(Build.SourcesDirectory)'
-
 steps:
-- task: BatchScript@1
+- task: CmdLine@2
   inputs:
-    filename: '$(batchFilePath)'
-- script: |
-    echo '$(batchFilePath)' 
+    script: 'D:\AzureTest\test.bat'
