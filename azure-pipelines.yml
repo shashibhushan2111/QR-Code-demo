@@ -12,5 +12,19 @@ pool:
 steps:
 - task: CmdLine@2
   inputs:
-    script: 'D:\AzureTest\test.bat'
-    workingDirectory: 'D:\a\1\s'
+    script: |
+      @echo off
+      ::set /p name=Enter your name: 
+      set name1=bhushan
+      echo %name1%
+      set message=Hello World 
+      echo %message%
+      pause
+      
+      if %name1% == bhushan (
+        echo Hello, shashi!
+        echo %name1% Minnesota
+      ) else (
+        echo Hello, stranger!
+      )
+      pause
