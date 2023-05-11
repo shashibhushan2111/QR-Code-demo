@@ -13,6 +13,6 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      cd D:\AzureTest
+      cd /d D:\AzureTest
       dir
       
