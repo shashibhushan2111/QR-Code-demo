@@ -13,4 +13,5 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      dir
+      cd script.bat
+      
