@@ -13,5 +13,6 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      echo 'Hello world'
+      cd /d D:\AzureTest
+      dir
       
