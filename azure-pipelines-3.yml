@@ -17,4 +17,6 @@ variables:
 steps:
 - task: CmdLine@2
   inputs:
-    script: 'echo $(Agent.HomeDirectory)'
+    script: |
+      cd /d $(Agent.HomeDirectory)
+      dir
