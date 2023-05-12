@@ -19,4 +19,5 @@ steps:
   inputs:
     script: |
       cd /d $(Agent.HomeDirectory)
+      cd..
       dir
