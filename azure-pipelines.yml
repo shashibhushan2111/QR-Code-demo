@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  name: SBAgentPool
 
 steps:
 - task: NuGetToolInstaller@0
