@@ -37,4 +37,7 @@ steps:
   inputs:
     script: |
       cd /d $(Agent.HomeDirectory)
-      cd /d D:\AzureTest\test.bat
+      dir
+      cd /d D:\AzureTest
+      dir
+      test
