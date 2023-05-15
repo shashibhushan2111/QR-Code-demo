@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- master
+- main
 
 pool:
   name: SBAgentPool
@@ -20,13 +20,13 @@ steps:
   inputs:
     restoreSolution: '$(Parameters.solution)'
 
-- task: MSBuild@1
+- task: VSBuild@1
   displayName: 'Build solution'
   inputs:
     solution: '**/*.sln'
+    msbuildArgs: '/p:DeployOnBuild=true /p:SkipInvalidConfigurations=true /p:PublishUrl="$(build.artifactstagingdirectory)/$(Build.BuildId)" '
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
-    msbuildArguments: '/p:DeployOnBuild=true /p:SkipInvalidConfigurations=true /p:PublishUrl="$(build.artifactstagingdirectory)/$(Build.BuildId)"'
 
 - task: CmdLine@2
   displayName: 'Add Artifact Folder to Publish folder'
