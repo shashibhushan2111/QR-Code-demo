@@ -23,7 +23,7 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '**\*.sln'
-    msbuildArgs: '/p:DeployOnBuild=true /p:SkipInvalidConfigurations=true /p:PublishUrl="$(build.artifactstagingdirectory)\$(Build.BuildId)"'
+    msbuildArgs: '/p:DeployOnBuild=true /p:SkipInvalidConfigurations=true /p:PublishUrl="$(build.artifactstagingdirectory)"'
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
 
@@ -31,7 +31,7 @@ steps:
   displayName: 'Add Artifact Folder to Publish folder'
   inputs:
     script: |
-      xcopy "$(build.artifactstagingdirectory)/$(Build.BuildId)" "D:\AzureTest\AzurePublish" /s /y
+      xcopy "$(build.artifactstagingdirectory)" "D:\AzureTest\AzurePublish" /s /y
 
 - task: CmdLine@2
   inputs:
