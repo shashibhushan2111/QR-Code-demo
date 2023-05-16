@@ -16,5 +16,5 @@ steps:
     script: |
       $appPoolName = 'AzureDemo'
       Import-Module WebAdministration
-      Stop-WebAppPool -Name $appPoolName
+      Start-Process powershell -Verb runAs -ArgumentList "-Command Stop-WebAppPool -Name $appPoolName"
 
