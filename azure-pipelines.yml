@@ -16,4 +16,4 @@ steps:
     script: |
       cd /d $(Agent.HomeDirectory)
       dir
-      cd /d D:\AzureTest\test - Shortcut.lnk
+      cd /d D:\AzureTest\test
