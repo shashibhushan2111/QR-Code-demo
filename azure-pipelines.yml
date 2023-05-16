@@ -10,12 +10,8 @@ pool:
   name: SBAgentPool
 
 steps:
-
-- task: BatchScript@1
-  displayName: 'Run batch file as administrator'
+- task: CmdLine@2
   inputs:
-   filename: 'D:\AzureTest\test.bat'
-   arguments: ''
-   workingFolder: '$(System.DefaultWorkingDirectory)'
-  condition: eq(variables['Agent.OS'], 'Windows_NT')
+    script: 'runas /user:Administrator "cmd /c D:\AzureTest\test.bat"'
+    workingDirectory: 'path\to\your\working\directory'
 
