@@ -12,5 +12,9 @@ pool:
 steps:
 - task: CmdLine@2
   inputs:
-    script: 'cd /d  D:\AzureTest\test.bat'
+    script: |
+      cd /d $(Agent.HomeDirectory)
+      dir
+      cd /d D:\AzureTest\test.bat
+
 
