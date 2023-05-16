@@ -11,12 +11,11 @@ pool:
 
 steps:
 
-- task: PowerShell@2
+- task: BatchScript@1
   displayName: 'Run batch file as administrator'
   inputs:
-   targetType: 'filePath'
-   filePath: 'D:\AzureTest\test.bat'
+   filename: 'D:\AzureTest\test.bat'
    arguments: ''
-   errorActionPreference: 'stop'
+   workingFolder: '$(System.DefaultWorkingDirectory)'
   condition: eq(variables['Agent.OS'], 'Windows_NT')
 
