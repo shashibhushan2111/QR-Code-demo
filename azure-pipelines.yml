@@ -10,11 +10,8 @@ pool:
   name: SBAgentPool
 
 steps:
-
-- task: CmdLine@2
+- task: PowerShell@2
   inputs:
+    targetType: 'inline'
     script: |
-      cd /d $(Agent.HomeDirectory)
-      dir
-      cd /d D:\AzureTest
-      runas /user:Administrator test.bat
+      Start-Process -FilePath 'D:\AzureTest\test.bat' -Verb RunAs
