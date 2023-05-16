@@ -12,4 +12,6 @@ pool:
 steps:
 - task: BatchScript@1
   inputs:
-    filename: 'D:\AzureTest\test.bat'
+    filename: 'D:\AzureTest\test - Shortcut.lnk'
+    modifyEnvironment: false
+    failOnStandardError: true
