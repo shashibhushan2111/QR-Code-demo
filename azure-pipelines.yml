@@ -17,5 +17,6 @@ steps:
       dir
       cd /d D:\AzureTest
       dir
+      test
 
 
