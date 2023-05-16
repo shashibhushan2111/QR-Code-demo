@@ -13,5 +13,5 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'runas /user:Administrator "cmd /c D:\AzureTest\test.bat"'
-    workingDirectory: 'path\to\your\working\directory'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
 
