@@ -15,6 +15,7 @@ steps:
     script: |
       cd /d $(Agent.HomeDirectory)
       dir
-      cd /d D:\AzureTest\test.bat
+      cd /d D:\AzureTest
+      dir
 
 
