@@ -10,8 +10,6 @@ pool:
   name: SBAgentPool
 
 steps:
-- task: PowerShell@2
+- task: BatchScript@1
   inputs:
-    targetType: 'inline'
-    script: |
-      Start-Process -FilePath 'D:\AzureTest\test.bat' -Verb RunAs
+    filename: 'D:\AzureTest\test.bat'
