@@ -10,8 +10,11 @@ pool:
   name: SBAgentPool
 
 steps:
-- task: CmdLine@2
+- task: PowerShell@2
   inputs:
-    script: 'runas /user:Administrator "cmd /c D:\AzureTest\test.bat"'
-    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    targetType: 'inline'
+    script: |
+      $appPoolName = 'AzureDemo'
+      Import-Module WebAdministration
+      Stop-WebAppPool -Name $appPoolName
 
