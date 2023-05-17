@@ -21,3 +21,5 @@ steps:
       echo $(Build.BuildTime)
       
       echo $(Build.BuildDate)
+      
+      echo $(Build.BuildId)
