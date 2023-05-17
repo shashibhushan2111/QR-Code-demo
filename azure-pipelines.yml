@@ -36,7 +36,7 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/*.sln'
-    arguments: '--configuration $(buildConfiguration)  --output $(build.artifactstagingdirectory)\Build$(Build.BuildId)'
+    arguments: '--configuration $(buildConfiguration)  --output $(build.artifactstagingdirectory)\Build$(Build.BuildId)_$(Build.BuildDate)_$(Build.BuildTime)'
     zipAfterPublish: false
 
 - task: CmdLine@2
@@ -49,7 +49,7 @@ steps:
   displayName: 'Add Artifact Folder to Publish folder'
   inputs:
     script: |
-      xcopy "$(build.artifactstagingdirectory)\Build$(Build.BuildId)" "D:\AzureTest\AzurePublish" /s /y
+      xcopy "$(build.artifactstagingdirectory)\Build$(Build.BuildId)_$(Build.BuildDate)_$(Build.BuildTime)" "D:\AzureTest\AzurePublish" /s /y
 
 - task: CmdLine@2
   inputs:
