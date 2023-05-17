@@ -10,11 +10,33 @@ pool:
   name: SBAgentPool
 
 steps:
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet >=1.0.0'
+  inputs:
+    versionSpec: '>=1.0.0'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '$(Parameters.solution)'
+
+- task: VSBuild@1
+  inputs:
+    solution: '**\*.sln'
+    msbuildArgs: '/p:DeployOnBuild=true /p:SkipInvalidConfigurations=true /p:PublishUrl="$(build.artifactstagingdirectory)"'
+    platform: '$(BuildPlatform)'
+    configuration: '$(BuildConfiguration)'
+
+- task: CmdLine@2
+  displayName: 'Add Artifact Folder to Publish folder'
+  inputs:
+    script: |
+      xcopy "$(build.artifactstagingdirectory)" "D:\AzureTest\AzurePublish" /s /y
+
 - task: CmdLine@2
   inputs:
     script: |
       cd /d D:\AzureTest
       dir
       test
-
 
