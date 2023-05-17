@@ -57,3 +57,9 @@ steps:
       cd /d D:\AzureTest
       test
 
+- task: CmdLine@2
+  inputs:
+    script: |
+      cd /d D:\AzureTest
+      SqlTest
+
