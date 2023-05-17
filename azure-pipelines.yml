@@ -20,25 +20,25 @@ steps:
   inputs:
     restoreSolution: '$(Parameters.solution)'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '**\*.sln'
-    msbuildArgs: '/p:DeployOnBuild=true /p:SkipInvalidConfigurations=true /p:PublishUrl="$(build.artifactstagingdirectory)\$(Build.BuildId)"'
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
+    command: 'test'
+    projects: '**/*.sln'
+    arguments: '--configuration $(buildConfiguration)'
 
-- task: PublishBuildArtifacts@1
+- task: DotNetCoreCLI@2
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'FilePath'
-    TargetPath: 'D:\AzureTest\AzurePublish'
-
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/*.sln'
+    arguments: '--configuration $(buildConfiguration)  --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: false
+    
 - task: CmdLine@2
   displayName: 'Add Artifact Folder to Publish folder'
   inputs:
     script: |
-      xcopy "$(build.artifactstagingdirectory)\$(Build.BuildId)" "D:\AzureTest\AzurePublish" /s /y
+      xcopy "$(build.artifactstagingdirectory)" "D:\AzureTest\AzurePublish" /s /y
 
 - task: CmdLine@2
   inputs:
