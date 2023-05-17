@@ -24,12 +24,14 @@ steps:
     restoreSolution: '$(Parameters.solution)'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Build project'
   inputs:
-    command: 'test'
+    command: 'build'
     projects: '**/*.sln'
     arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
+  displayName: 'Publish Project'
   inputs:
     command: 'publish'
     publishWebProjects: false
