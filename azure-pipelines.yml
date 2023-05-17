@@ -27,6 +27,13 @@ steps:
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
 
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'FilePath'
+    TargetPath: 'D:\AzureTest\AzurePublish'
+
 - task: CmdLine@2
   displayName: 'Add Artifact Folder to Publish folder'
   inputs:
