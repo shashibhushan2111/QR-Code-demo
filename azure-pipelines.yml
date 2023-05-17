@@ -9,6 +9,9 @@ trigger:
 pool:
   name: SBAgentPool
 
+variables:
+  buildConfiguration: 'Release'
+
 steps:
 - task: NuGetToolInstaller@0
   displayName: 'Use NuGet >=1.0.0'
