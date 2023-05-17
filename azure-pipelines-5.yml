@@ -38,13 +38,13 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/*.sln'
-    arguments: '--configuration $(buildConfiguration)  --output $(build.artifactstagingdirectory)'
+    arguments: '--configuration $(buildConfiguration)  --output $(build.artifactstagingdirectory)\$(Build.BuildId)'
     zipAfterPublish: false
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifact'
   inputs:
-    pathtoPublish: '$(artifactStagingDirectory)'
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
     artifactName: 'my-artifact'
     publishLocation: 'Container'
 
