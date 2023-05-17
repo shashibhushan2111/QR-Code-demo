@@ -30,6 +30,12 @@ steps:
     projects: '**/*.sln'
     arguments: '--configuration $(buildConfiguration)'
 
+- task: CmdLine@2
+  displayName: 'Backup Old Folder'
+  inputs:
+    script: |
+      xcopy "$(build.artifactstagingdirectory)" "D:\AzureTest\Backup_Artifacts" /s /y
+
 - task: DotNetCoreCLI@2
   displayName: 'Publish Project'
   inputs:
