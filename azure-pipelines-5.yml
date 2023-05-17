@@ -1,0 +1,59 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- main
+
+pool:
+  name: SBAgentPool
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@0
+  displayName: 'Use NuGet >=1.0.0'
+  inputs:
+    versionSpec: '>=1.0.0'
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '$(Parameters.solution)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build project'
+  inputs:
+    command: 'build'
+    projects: '**/*.sln'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish project'
+  inputs:
+    command: 'publish'
+    projects: '**/*.sln'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifact'
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
+    artifactName: 'my-artifact'
+    publishLocation: 'Container'
+
+- task: CmdLine@2
+  displayName: 'Add Artifact Folder to Publish folder'
+  inputs:
+    script: |
+      xcopy "$(build.artifactstagingdirectory)\$(Build.BuildId)" "D:\AzureTest\AzurePublish" /s /y
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      cd /d D:\AzureTest
+      test
