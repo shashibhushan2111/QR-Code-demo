@@ -10,8 +10,6 @@ pool:
   name: SBAgentPool
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
@@ -33,11 +31,13 @@ steps:
     arguments: '--configuration $(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Publish project'
+  displayName: 'Publish Project'
   inputs:
     command: 'publish'
+    publishWebProjects: false
     projects: '**/*.sln'
-    arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)\$(Build.BuildId)'
+    arguments: '--configuration $(buildConfiguration)  --output $(build.artifactstagingdirectory)\$(Build.BuildId)'
+    zipAfterPublish: false
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifact'
