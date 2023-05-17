@@ -34,14 +34,14 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/*.sln'
-    arguments: '--configuration $(buildConfiguration)  --output $(build.artifactstagingdirectory)'
+    arguments: '--configuration $(buildConfiguration)  --output $(build.artifactstagingdirectory)\$(Build.BuildId)'
     zipAfterPublish: false
     
 - task: CmdLine@2
   displayName: 'Add Artifact Folder to Publish folder'
   inputs:
     script: |
-      xcopy "$(build.artifactstagingdirectory)" "D:\AzureTest\AzurePublish" /s /y
+      xcopy "$(build.artifactstagingdirectory)\$(Build.BuildId)" "D:\AzureTest\AzurePublish" /s /y
 
 - task: CmdLine@2
   inputs:
