@@ -11,6 +11,8 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  artifactStagingDirectory: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
+
 
 steps:
 - task: NuGetToolInstaller@0
@@ -36,13 +38,13 @@ steps:
     command: 'publish'
     publishWebProjects: false
     projects: '**/*.sln'
-    arguments: '--configuration $(buildConfiguration)  --output $(build.artifactstagingdirectory)\$(Build.BuildId)'
+    arguments: '--configuration $(buildConfiguration)  --output $(build.artifactstagingdirectory)'
     zipAfterPublish: false
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifact'
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
+    pathtoPublish: '$(artifactStagingDirectory)'
     artifactName: 'my-artifact'
     publishLocation: 'Container'
 
