@@ -37,7 +37,7 @@ steps:
   inputs:
     command: 'publish'
     projects: '**/*.sln'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(Build.BuildId)'
+    arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)\$(Build.BuildId)'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifact'
