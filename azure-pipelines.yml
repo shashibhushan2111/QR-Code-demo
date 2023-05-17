@@ -37,6 +37,5 @@ steps:
   inputs:
     script: |
       cd /d D:\AzureTest
-      dir
       test
 
