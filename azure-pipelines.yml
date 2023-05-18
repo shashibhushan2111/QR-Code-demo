@@ -11,6 +11,13 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  sqlScriptPath: 'D:\AzureTest\DemoSQL.sql'
+  logFilePath: 'D:\AzureTest\OutPut.txt'
+  serverName: '(LocalDb)\MSSQLLocalDB'
+  databaseName: 'TrafficDB'
+  username: 'TestLogin'
+  pwd: 'Test1'
+
 
 steps:
 - task: NuGetToolInstaller@0
@@ -51,6 +58,9 @@ steps:
     script: |
       xcopy "$(build.artifactstagingdirectory)\Build$(Build.BuildId)" "D:\AzureTest\AzurePublish" /s /y
 
+- task: PowerShell@2
+  inputs:
+    filePath: 'Invoke-Sqlcmd -ServerInstance $(serverName) -Database $(databaseName) -Username "$(username)" -Password "$(pwd)" -InputFile $(sqlScriptPath) | Out-File -FilePath $(logFilePath) -Verbose'
 - task: CmdLine@2
   inputs:
     script: |
