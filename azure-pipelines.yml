@@ -58,6 +58,12 @@ steps:
     script: |
       xcopy "$(build.artifactstagingdirectory)\Build$(Build.BuildId)" "D:\AzureTest\AzurePublish" /s /y
 
+- task: CmdLine@2
+  inputs:
+    script: |
+      cd /d D:\AzureTest
+      SqlTest
+
 - task: PowerShell@2
   inputs:
     filePath: 'D:\AzureTest\testPS.ps1'
@@ -79,9 +85,4 @@ steps:
       cd /d D:\AzureTest
       WinAuthSqlBat
 
-- task: CmdLine@2
-  inputs:
-    script: |
-      cd /d D:\AzureTest
-      SqlTest
 
