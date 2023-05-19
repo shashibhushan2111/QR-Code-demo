@@ -16,15 +16,6 @@ variables:
 
 steps:
 
-- task: SqlDacpacDeploymentOnMachineGroup@0
-  inputs:
-    TaskType: 'sqlQuery'
-    SqlFile: 'D:\AzureTest\DemoSQL.sql'
-    ServerName: '(LocalDb)\MSSQLLocalDB'
-    DatabaseName: 'TrafficDB'
-    AuthScheme: 'sqlServerAuthentication'
-    SqlUsername: 'TestLogin'
-    SqlPassword: 'Test1'
 - task: CmdLine@2
   inputs:
     script: |
