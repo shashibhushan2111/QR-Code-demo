@@ -19,28 +19,6 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      SET SQLCMD="C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\SQLCMD.EXE"
-      
-      SET PATH="D:\AzureTest\"
-      
-      SET SERVER="(LocalDb)\MSSQLLocalDB"
-      
-      SET DB="TrafficDB"
-      
-      SET LOGIN="TestLogin"
-      
-      SET PASSWORD="Test1"
-      
-      SET INPUT="D:\AzureTest\DemoSQL.sql"
-      
-      SET OUTPUT="D:\AzureTest\OutPut.txt"
-      
-      
-      %SQLCMD% -S %SERVER% -d %DB% -U %LOGIN% -P %PASSWORD% -i %INPUT% -o %OUTPUT%
-
-- task: CmdLine@2
-  inputs:
-    script: |
       cd /d D:\AzureTest
       SqlTest
 
