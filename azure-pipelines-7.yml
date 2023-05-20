@@ -15,10 +15,14 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+
+
 - task: SqlDacpacDeploymentOnMachineGroup@0
   inputs:
     TaskType: 'sqlQuery'
     SqlFile: 'D:\AzureTest\AzureTestSql.sql'
     ServerName: 'localhost'
     DatabaseName: 'TrafficDB'
-    AuthScheme: 'windowsAuthentication'
+    AuthScheme: 'sqlServerAuthentication'
+    SqlUsername: 'AzureTest'
+    SqlPassword: 'Test1'
