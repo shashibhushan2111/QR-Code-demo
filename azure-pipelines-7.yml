@@ -15,7 +15,11 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-
+- task: CmdLine@2
+  inputs:
+    script: |
+      cd /d D:\AzureTest
+      Test
 
 - task: SqlDacpacDeploymentOnMachineGroup@0
   inputs:
